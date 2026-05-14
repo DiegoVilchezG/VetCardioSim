@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Simulador ECG - Veterinario</title>
+    <link rel="stylesheet" href="css/styles.css"/>
+</head>
+
+<body>
+    <header class="header">
+        <span>Ritmos Variables | Frecuencia Variable</span>
+    </header>
+
+    <main class="container">
+        <div class="ecg-wrapper">
+            <canvas id="ecg-canvas" width="1200" height="400"></canvas>
+        </div>
+
+        <section class="controls">
+            <div>
+                <label>Frecuencia Cardiaca:</label>
+                <input type="range" min="40" max="150" id="hrSlider">
+            </div>
+
+            <div>
+                <label>Velocidad:</label>
+                <select>
+                    <option>25 mm/s</option>
+                    <option>50 mm/s</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Amplitud:</label>
+                <select>
+                    <option>10 mm/mV</option>
+                    <option>5 mm/mV</option>
+                </select>
+            </div>
+        </section>
+        <div>
+            <label>Ritmo:</label>
+            <select id="rhythmSelect">
+                <option value="sinusal">Sinusal</option>
+                <option value="taquicardia">Taquicardia</option>
+                <option value="bradicardia">Bradicardia</option>
+                <option value="arritmia">Arritmia</option>
+                <option value="qrsAncha">Bloqueo de Rama</option>
+            </select>
+        </div>
+
+        <section class="interpretacion">
+            <strong>Interpretación Clínica:</strong>
+            <p>Ritmo regular, ondas P visibles precediendo cada QRS...</p>
+        </section>
+    </main>
+    <script src="js/ecg.js"></script>
+    <script src="js/main.js"></script>
+</body>
