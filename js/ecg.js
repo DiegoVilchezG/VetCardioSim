@@ -74,7 +74,8 @@ hrSlider.addEventListener("input", (e) => {
 
 // Barrido
 let x = 0;
-const speed = 2;
+let speed = 2;
+let gainMult = 1;
 
 // Grilla
 function drawGrid() {
@@ -155,7 +156,7 @@ function heartbeat(fase){
     value += qrsWave(fase);
     value += tWave(fase);
 
-    return value;
+    return value*gainMult;
 }
 
 // Inicializar
