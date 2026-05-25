@@ -12,37 +12,49 @@ const dt = 1 / fps;
 
 const rhythms ={
     sinusal: {
-        heartRate: 60,
-        p: {start: 0.11, end: 0.22, amplitude: 14},
+        heartRate: 75,
+        p: {present: true, start: 0.11, end: 0.22, amplitude: 14},
         qrs: {start: 0.27, end: 0.34, qAmp: 20, rAmp: 80},
-        t: {start: 0.37, end: 0.6, amplitude: 22},
+        t: {present: true, start: 0.37, end: 0.6, amplitude: 22},
     },
     taquicardia: {
         heartRate: 110,
-        p: {start: 0.08, end: 0.15, amplitude: 14},
+        p: {present: true, start: 0.08, end: 0.15, amplitude: 14},
         qrs: {start: 0.18, end: 0.24, qAmp: 20, rAmp: 80},
-        t: {start: 0.28, end: 0.48, amplitude: 22},
+        t: {present: true, start: 0.28, end: 0.48, amplitude: 22},
     },
     bradicardia: {
         heartRate: 45,
-        p: {start: 0.15, end: 0.30, amplitude: 14},
+        p: {present: true, start: 0.15, end: 0.30, amplitude: 14},
         qrs: {start: 0.40, end: 0.48, qAmp: 20, rAmp: 80},
-        t: {start: 0.55, end: 0.85, amplitude: 22},
+        t: {present: true, start: 0.55, end: 0.85, amplitude: 22},
     },
     arritmia:{
-        heartRate: 60,
+        heartRate: 65,
         variability: 4,
-        p: {start: 0.11, end: 0.22, amplitude: 14},
+        p: {present: true, start: 0.11, end: 0.22, amplitude: 14},
         qrs: {start: 0.27, end: 0.34, qAmp: 20, rAmp: 80},
-        t: {start: 0.37, end: 0.6, amplitude: 22}
+        t: {present: true, start: 0.37, end: 0.6, amplitude: 22}
     },
     bloqueo_rama:{
         heartRate: 60,
-        p:{start: 0.11, end: 0.22, amplitude: 14},
+        p:{present: true, start: 0.11, end: 0.22, amplitude: 14},
         qrs: {start: 0.28, end: 0.42, qAmp: 20, rAmp: 80},
-        t: {start: 0.47, end: 0.75, amplitude: 22},
+        t: {present: true, start: 0.47, end: 0.75, amplitude: 22},
         type: "qrsAncha"
     },
+    riva: {
+        heartRate: 80,
+        p: { present: false },
+        qrs: { start: 0.20, end: 0.42, qAmp: 8, rAmp: 65 },
+        t: { present: true, start: 0.45, end: 0.78, amplitude: -28 },
+    },
+    escapeVentricular: {
+        heartRate: 30,
+        p: { present: false },
+        qrs: { start: 0.15, end: 0.48, qAmp: 45, rAmp: 55 },
+        t: { present: true, start: 0.52, end: 0.88, amplitude: -35 },
+    }
 }
 
 let currentRhythm = "sinusal";
@@ -93,6 +105,7 @@ function drawGrid() {
 
 // Valor de la onda P
 function pWave(fase) {
+    if (!beatConfig.p.present) return 0;
     const { start, end, amplitude } = beatConfig.p;
 
     if (fase < start || fase > end) return 0;
@@ -126,6 +139,7 @@ function qrsWave(fase) {
 }
 
 function tWave(fase) {
+    if (!beatConfig.t.present) return 0;
     const { start, end, amplitude } = beatConfig.t;
 
     if (fase < start || fase > end) return 0;
