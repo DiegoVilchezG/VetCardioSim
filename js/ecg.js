@@ -10,52 +10,37 @@ let time = 0;
 const fps = 120;
 const dt = 1 / fps;
 
-const rhythms ={
+const rhythms = {
     sinusal: {
         heartRate: 75,
-        p: {present: true, start: 0.11, end: 0.22, amplitude: 14},
-        qrs: {start: 0.27, end: 0.34, qAmp: 20, rAmp: 80},
-        t: {present: true, start: 0.37, end: 0.6, amplitude: 22},
-    },
-    taquicardia: {
-        heartRate: 110,
-        p: {present: true, start: 0.08, end: 0.15, amplitude: 14},
-        qrs: {start: 0.18, end: 0.24, qAmp: 20, rAmp: 80},
-        t: {present: true, start: 0.28, end: 0.48, amplitude: 22},
-    },
-    bradicardia: {
-        heartRate: 45,
-        p: {present: true, start: 0.15, end: 0.30, amplitude: 14},
-        qrs: {start: 0.40, end: 0.48, qAmp: 20, rAmp: 80},
-        t: {present: true, start: 0.55, end: 0.85, amplitude: 22},
-    },
-    arritmia:{
-        heartRate: 65,
-        variability: 4,
-        p: {present: true, start: 0.11, end: 0.22, amplitude: 14},
-        qrs: {start: 0.27, end: 0.34, qAmp: 20, rAmp: 80},
-        t: {present: true, start: 0.37, end: 0.6, amplitude: 22}
-    },
-    bloqueo_rama:{
-        heartRate: 60,
-        p:{present: true, start: 0.11, end: 0.22, amplitude: 14},
-        qrs: {start: 0.28, end: 0.42, qAmp: 20, rAmp: 80},
-        t: {present: true, start: 0.47, end: 0.75, amplitude: 22},
-        type: "qrsAncha"
+        texto: "Ritmo sinusal normal. Frecuencia cardíaca entre 60–160 lpm en perros. Ondas P presentes y uniformes precediendo cada QRS. Intervalo PR constante. QRS estrecho. Ritmo regular.",
+        p: { present: true, start: 0.11, end: 0.22, amplitude: 14 },
+        qrs: { start: 0.27, end: 0.34, qAmp: 20, rAmp: 80 },
+        t: { present: true, start: 0.37, end: 0.6, amplitude: 22 },
     },
     riva: {
         heartRate: 80,
+        texto: "Ritmo idioventricular acelerado (RIVA). FC entre 60–100 lpm. Ausencia de onda P. QRS ancho y bizarro por despolarización ventricular anómala. Onda T discordante (polaridad opuesta al QRS). Frecuentemente asociado a reperfusión miocárdica o desequilibrios electrolíticos.",
         p: { present: false },
         qrs: { start: 0.20, end: 0.42, qAmp: 8, rAmp: 65 },
         t: { present: true, start: 0.45, end: 0.78, amplitude: -28 },
     },
     escapeVentricular: {
         heartRate: 30,
+        texto: "Complejo de escape ventricular. FC menor a 40 lpm. Ritmo de rescate ante falla del marcapasos sinusal. Ausencia de onda P. QRS muy ancho con morfología aberrante. Onda T discordante. Requiere evaluación urgente de la causa subyacente.",
         p: { present: false },
         qrs: { start: 0.15, end: 0.48, qAmp: 45, rAmp: 55 },
         t: { present: true, start: 0.52, end: 0.88, amplitude: -35 },
-    }
-}
+    },
+    arritmia: {
+        heartRate: 65,
+        variability: 6,
+        texto: "Arritmia sinusal respiratoria. Variación cíclica de la FC asociada a la respiración. Frecuente y normal en perros. Ondas P presentes y constantes. QRS estrecho. El ritmo se acelera en inspiración y enlentece en espiración.",
+        p: { present: true, start: 0.11, end: 0.22, amplitude: 14 },
+        qrs: { start: 0.27, end: 0.34, qAmp: 20, rAmp: 80 },
+        t: { present: true, start: 0.37, end: 0.6, amplitude: 22 },
+    },
+};
 
 let currentRhythm = "sinusal";
 let beatConfig = rhythms[currentRhythm];
