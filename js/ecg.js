@@ -22,7 +22,7 @@ function setRhythm(name){
     beatDuration = 60 / beatConfig.heartRate;
     x = 0;
     prevX = 0;
-    prevY = 0;
+    prevY = centerY;
     time = 0;
     drawGrid();
 }
@@ -163,5 +163,6 @@ fetch("data/rhythms.json")
     .then(data => {
         rhythms = data;
         setRhythm("sinusal");
+        actualizarTexto("sinusal");
         draw();
     });

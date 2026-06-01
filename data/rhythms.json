@@ -9,6 +9,7 @@
     "riva": {
         "heartRate": 80,
         "texto": "Ritmo idioventricular acelerado (RIVA). FC entre 60–100 lpm. Ausencia de onda P. QRS ancho y bizarro por despolarización ventricular anómala. Onda T discordante (polaridad opuesta al QRS). Frecuentemente asociado a reperfusión miocárdica o desequilibrios electrolíticos.",
+        "type": "qrsAncha",
         "p": { "present": false },
         "qrs": { "start": 0.20, "end": 0.42, "qAmp": 8, "rAmp": 65 },
         "t": { "present": true, "start": 0.45, "end": 0.78, "amplitude": -28 }
@@ -16,6 +17,7 @@
     "escapeVentricular": {
         "heartRate": 30,
         "texto": "Complejo de escape ventricular. FC menor a 40 lpm. Ritmo de rescate ante falla del marcapasos sinusal. Ausencia de onda P. QRS muy ancho con morfología aberrante. Onda T discordante. Requiere evaluación urgente de la causa subyacente.",
+        "type": "qrsAncha",
         "p": { "present": false },
         "qrs": { "start": 0.15, "end": 0.48, "qAmp": 45, "rAmp": 55 },
         "t": { "present": true, "start": 0.52, "end": 0.88, "amplitude": -35 }

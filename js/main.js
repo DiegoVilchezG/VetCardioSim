@@ -22,8 +22,5 @@ speedSelect.addEventListener("change", (e) => {
 
 const gainSelect = document.getElementById("gainSelect");
 gainSelect.addEventListener("change", (e) => {
-    gainMultiplier = parseFloat(e.target.value);
+    gainMult = parseFloat(e.target.value);
 });
-
-// Mostrar texto del ritmo inicial al cargar
-actualizarTexto("sinusal");
