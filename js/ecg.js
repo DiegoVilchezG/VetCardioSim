@@ -90,9 +90,14 @@ function qrsWave(fase) {
         return rAmp * (1 - (u - 0.6) / 0.4);
     }
 
-    // QRS ancho (más redondeado y largo)
-    if (u < 0.5) {
-        return rAmp * Math.sin(Math.PI * (u / 0.5));
+    if (u < 0.4){
+        return rAmp*Math.sin((Math.PI/2)*(u/0.4));
+    }
+    else if (u < 0.7){
+        return rAmp * Math.cos((Math.PI/2)*((u-0.4)/0.3));
+    }
+    else{
+        return -qAmp * Math.sin(Math.PI*((u-0.7)/0.3));
     }
 
     return rAmp * Math.sin(Math.PI * (1 - (u - 0.5) / 0.5));
