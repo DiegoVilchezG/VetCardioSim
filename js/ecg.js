@@ -20,6 +20,11 @@ function setRhythm(name){
     currentRhythm = name;
     beatConfig = rhythms[currentRhythm];
     beatDuration = 60 / beatConfig.heartRate;
+    x = 0;
+    prevX = 0;
+    prevY = 0;
+    time = 0;
+    drawGrid();
 }
 
 hrSlider.addEventListener("input", (e) => {
