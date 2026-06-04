@@ -160,9 +160,9 @@ function draw() {
     
     const fcDisplay = Math.round(60 / beatDuration);
     ctx.font = "bold 36px monospace";
-    ctx.fillStyle = "#cc0000";
+    ctx.fillStyle = "#ff0000";
     ctx.textAlign = "right";
-    ctx.fillText(`FC: ${fcDisplay} lpm`, canvas.width - 12, 24);
+    ctx.fillText(`FC: ${fcDisplay} lpm`, canvas.width - 12, 44);
 
     requestAnimationFrame(draw);
 }
