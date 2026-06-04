@@ -74,33 +74,31 @@ function pWave(fase) {
 
     return ((1 - Math.cos(2 * Math.PI * u)) / 2) * amplitude;
 }
-
 function qrsWave(fase) {
-    const { start, end, qAmp, rAmp } = beatConfig.qrs;
-
+    const { start, end, qAmp, rAmp, shape } = beatConfig.qrs;
     if (fase < start || fase > end) return 0;
-
     const u = (fase - start) / (end - start);
 
-    // comportamiento normal
-    if (!beatConfig.type || beatConfig.type !== "qrsAncha") {
-
+    // Sinusal / arritmia: QRS estrecho con q, R, s
+    if (!shape || shape === "normal") {
         if (u < 0.3) return -qAmp * (u / 0.3);
         if (u < 0.6) return -qAmp + rAmp * ((u - 0.3) / 0.3);
         return rAmp * (1 - (u - 0.6) / 0.4);
     }
 
-    if (u < 0.4){
-        return rAmp*Math.sin((Math.PI/2)*(u/0.4));
-    }
-    else if (u < 0.7){
-        return rAmp * Math.cos((Math.PI/2)*((u-0.4)/0.3));
-    }
-    else{
-        return -qAmp * Math.sin(Math.PI*((u-0.7)/0.3));
+    // RIVA: R monofásico ancho, sin onda S
+    if (shape === "monoR") {
+        if (u < 0.35) return rAmp * Math.sin((Math.PI / 2) * (u / 0.35));
+        return rAmp * Math.cos((Math.PI / 2) * ((u - 0.35) / 0.65));
     }
 
-    return rAmp * Math.sin(Math.PI * (1 - (u - 0.5) / 0.5));
+    // Escape VD: patrón rS — R pequeña seguida de S profunda
+    if (shape === "rS") {
+        if (u < 0.25) return rAmp * Math.sin(Math.PI * (u / 0.25));
+        return -qAmp * Math.sin(Math.PI * ((u - 0.25) / 0.75));
+    }
+
+    return 0;
 }
 
 function tWave(fase) {
@@ -171,3 +169,4 @@ fetch("data/rhythms.json")
         actualizarTexto("sinusal");
         draw();
     });
+
