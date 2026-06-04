@@ -157,6 +157,12 @@ function draw() {
         x = 0;
         drawGrid();
     }
+    // Mostrar FC en esquina superior derecha del canvas
+    const fcDisplay = Math.round(60 / beatDuration);
+    ctx.font = "bold 16px monospace";
+    ctx.fillStyle = "#cc0000";
+    ctx.textAlign = "right";
+    ctx.fillText(`FC: ${fcDisplay} lpm`, canvas.width - 12, 24);
 
     requestAnimationFrame(draw);
 }
