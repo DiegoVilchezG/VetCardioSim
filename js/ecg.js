@@ -14,12 +14,15 @@ let rhythms = {};
 let currentRhythm = "sinusal";
 let beatConfig = {};
 let beatDuration = 1;
+let manualHeartRate = null;
 
 function setRhythm(name){
     if (!rhythms[name]) return;
     currentRhythm = name;
     beatConfig = rhythms[currentRhythm];
     beatDuration = 60 / beatConfig.heartRate;
+    manualHeartRate = null;
+    hrSlider.value = beatConfig.heartRate;
     x = 0;
     prevX = 0;
     prevY = centerY;
@@ -28,7 +31,7 @@ function setRhythm(name){
 }
 
 hrSlider.addEventListener("input", (e) => {
-  beatConfig.heartRate = parseInt(e.target.value);
+  manualHeartRate = parseInt(e.target.value);
 });
 
 // Barrido
@@ -63,7 +66,6 @@ function drawGrid() {
     }
 }
 
-// Valor de la onda P
 function pWave(fase) {
     if (!beatConfig.p.present) return 0;
     const { start, end, amplitude } = beatConfig.p;
@@ -74,6 +76,7 @@ function pWave(fase) {
 
     return ((1 - Math.cos(2 * Math.PI * u)) / 2) * amplitude;
 }
+
 function qrsWave(fase) {
     const { start, end, qAmp, rAmp, shape } = beatConfig.qrs;
     if (fase < start || fase > end) return 0;
@@ -121,16 +124,15 @@ function heartbeat(fase){
     return value*gainMult;
 }
 
-// Inicializar
 drawGrid();
 
 function draw() {
 
-    let currentHeartRate = beatConfig.heartRate;
+    let currentHeartRate = manualHeartRate ?? beatConfig.heartRate;
     if (currentRhythm === "arritmia"){
         const variability = beatConfig.variability;
 
-        currentHeartRate = beatConfig.heartRate + Math.sin(time*0.2) * variability;
+        currentHeartRate = (manualHeartRate ?? beatConfig.heartRate) + Math.sin(time*0.2) * variability;
     } 
     beatDuration = 60 / currentHeartRate;
     const fase = time % beatDuration;
@@ -159,10 +161,12 @@ function draw() {
     }
     
     const fcDisplay = Math.round(60 / beatDuration);
-    ctx.font = "bold 36px monospace";
-    ctx.fillStyle = "#ff0000";
+    ctx.fillStyle = "rgba(255,255,255,0.9)";
+    ctx.fillRect(canvas.width - 180, 4, 172, 40);
+    ctx.font = "bold 24px monospace";
+    ctx.fillStyle = "#cc0000";
     ctx.textAlign = "right";
-    ctx.fillText(`FC: ${fcDisplay} lpm`, canvas.width - 12, 44);
+    ctx.fillText(`FC: ${fcDisplay} lpm`, canvas.width - 12, 34);
 
     requestAnimationFrame(draw);
 }
