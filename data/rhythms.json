@@ -55,5 +55,29 @@
         "p": { "present": true, "start": 0.08, "end": 0.20, "amplitude": 14 },
         "qrs": { "shape": "normal", "start": 0.38, "end": 0.45, "qAmp": 20, "rAmp": 80 },
         "t": { "present": true, "start": 0.48, "end": 0.70, "amplitude": 22 }
+    },
+    "tsv": {
+        "heartRate": 260,
+        "texto": "Taquicardia supraventricular (TSV). FC superior a 180 lpm con origen supraventricular. Onda P ausente o superpuesta a la T del latido previo. QRS estrecho ya que la conducción ventricular es normal. Inicio y fin bruscos. Causas: vías accesorias, reentrada nodal.",
+        "p": { "present": false },
+        "qrs": { "shape": "normal", "start": 0.27, "end": 0.34, "qAmp": 15, "rAmp": 70 },
+        "t": { "present": true, "start": 0.37, "end": 0.55, "amplitude": 18 }
+    },
+    "fibrilacionAuricular": {
+        "heartRate": 130,
+        "variability": 35,
+        "special": "fibAuric",
+        "texto": "Fibrilación auricular. Ausencia de ondas P — reemplazadas por actividad eléctrica auricular caótica (ondas f). Intervalos RR completamente irregulares. QRS estrecho. Arritmia sostenida más frecuente en perros con enfermedad cardíaca estructural.",
+        "p": { "present": false },
+        "qrs": { "shape": "normal", "start": 0.27, "end": 0.34, "qAmp": 20, "rAmp": 80 },
+        "t": { "present": true, "start": 0.37, "end": 0.6, "amplitude": 22 }
+    },
+    "bloqueoAV3": {
+        "heartRate": 35,
+        "atrialRate": 110,
+        "texto": "Bloqueo AV de tercer grado (completo). Disociación total entre aurículas y ventrículos — ningún impulso auricular conduce al ventrículo. Ondas P presentes a su propio ritmo (más rápido). QRS a ritmo de escape lento. Emergencia cardíaca.",
+        "p": { "present": true, "start": 0.1, "end": 0.3, "amplitude": 12 },
+        "qrs": { "shape": "normal", "start": 0.27, "end": 0.34, "qAmp": 20, "rAmp": 80 },
+        "t": { "present": true, "start": 0.37, "end": 0.6, "amplitude": 22 }
     }
 }

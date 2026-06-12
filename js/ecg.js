@@ -15,6 +15,7 @@ let currentRhythm = "sinusal";
 let beatConfig = {};
 let beatDuration = 1;
 let manualHeartRate = null;
+let atrialTime = 0; 
 
 function setRhythm(name){
     if (!rhythms[name]) return;
@@ -27,6 +28,7 @@ function setRhythm(name){
     prevX = 0;
     prevY = centerY;
     time = 0;
+    atrialTime = 0;
     drawGrid();
 }
 
@@ -133,12 +135,42 @@ function draw() {
         const variability = beatConfig.variability;
 
         currentHeartRate = (manualHeartRate ?? beatConfig.heartRate) + Math.sin(time*0.2) * variability;
-    } 
+    }
+
+    if (beatConfig.special === "fibAuric"){
+        const base = manualHeartRate ?? beatConfig.heartRate;
+        currentHeartRate = base + (Math.sin(time*7.3)+Math.sin(time*13.7)) *beatConfig.variability*0.5;
+    }
+
     beatDuration = 60 / currentHeartRate;
     const fase = time % beatDuration;
 
-    const yOffset = heartbeat(fase);
-    const y = centerY - yOffset;
+    let yOffset = 0;
+
+    if (beatConfig.atrialRate){
+        const atrialBeatDuration = 60 / beatConfig.atrialRate;
+        const atrialFase = atrialTime % atrialBeatDuration;
+        atrialTime += dt;
+
+        const pCfg = beatConfig.p;
+        const pStart = pCfg.start * atrialBeatDuration;
+        const pEnd = pGfc.end * atrialBeatDuration;
+        if (pGfc.present && atrialFase >= pStart && atrialFase <= pEnd){
+            const u = (atrailFase - pStart) / (pEnd-pStart);
+            yOffset += ((1-Math.cos(2*Math.PI*u))/2)*pGfc.amplitude;
+        }
+        yOffset += qrsWave(fase) + tWave(fase);
+        yOffset *= gainMult;
+    }
+    else{
+        yOffset = heartbeat(fase)
+
+        if (beatConfig.special === "fibAuric"){
+            yOffset += Math.sin(time*52)*2.5
+                    + Math.sin(time * 83) * 2
+                    + Math.sin(time * 31)*1.5;
+        }
+    }
 
     ctx.beginPath();
     ctx.moveTo(prevX, prevY);
