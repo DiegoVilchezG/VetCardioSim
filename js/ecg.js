@@ -164,7 +164,7 @@ function draw() {
     ctx.fillStyle = "rgba(255,255,255,0.9)";
     ctx.fillRect(canvas.width - 180, 4, 172, 40);
     ctx.font = "bold 24px monospace";
-    ctx.fillStyle = "#cc0000";
+    ctx.fillStyle = "#ff0000";
     ctx.textAlign = "right";
     ctx.fillText(`FC: ${fcDisplay} lpm`, canvas.width - 12, 34);
 

@@ -27,5 +27,33 @@
         "p": { "present": true, "start": 0.11, "end": 0.22, "amplitude": 14 },
         "qrs": { "shape": "normal", "start": 0.27, "end": 0.34, "qAmp": 20, "rAmp": 80 },
         "t": { "present": true, "start": 0.37, "end": 0.6, "amplitude": 22 }
+    },
+    "taquicardiaSinusal": {
+        "heartRate": 180,
+        "texto": "Taquicardia sinusal. FC superior a 160 lpm en perros. Morfología idéntica al ritmo sinusal normal. Ondas P presentes, QRS estrecho, T concordante. Causas frecuentes: dolor, fiebre, hipovolemia, anemia o estimulación simpática.",
+        "p": { "present": true, "start": 0.11, "end": 0.22, "amplitude": 14 },
+        "qrs": { "shape": "normal", "start": 0.27, "end": 0.34, "qAmp": 20, "rAmp": 80 },
+        "t": { "present": true, "start": 0.37, "end": 0.6, "amplitude": 22 }
+    },
+    "bradicardiaSinusal": {
+        "heartRate": 40,
+        "texto": "Bradicardia sinusal. FC inferior a 60 lpm en perros. Morfología sinusal normal conservada. Puede ser fisiológica en atletas o patológica. Causas: hipotiroidismo, hipertensión intracraneal, fármacos (opioides, betabloqueantes) o tono vagal elevado.",
+        "p": { "present": true, "start": 0.11, "end": 0.22, "amplitude": 14 },
+        "qrs": { "shape": "normal", "start": 0.27, "end": 0.34, "qAmp": 20, "rAmp": 80 },
+        "t": { "present": true, "start": 0.37, "end": 0.6, "amplitude": 22 }
+    },
+    "taquicardiaVentricular": {
+        "heartRate": 200,
+        "texto": "Taquicardia ventricular. FC superior a 160 lpm con origen ventricular. Ausencia de onda P. QRS ancho y bizarro. Onda T discordante. Arritmia potencialmente grave que puede degenerar en fibrilación ventricular. Requiere tratamiento inmediato.",
+        "p": { "present": false },
+        "qrs": { "shape": "monoR", "start": 0.20, "end": 0.42, "qAmp": 0, "rAmp": 70 },
+        "t": { "present": true, "start": 0.45, "end": 0.75, "amplitude": -28 }
+    },
+    "bloqueoAV1": {
+        "heartRate": 70,
+        "texto": "Bloqueo AV de primer grado. FC normal con intervalo PR prolongado (>0.13s en perros). Onda P presente antes de cada QRS pero con conducción lenta a través del nodo AV. QRS estrecho. Puede ser fisiológico o asociado a fármacos e inflamación miocárdica.",
+        "p": { "present": true, "start": 0.08, "end": 0.20, "amplitude": 14 },
+        "qrs": { "shape": "normal", "start": 0.38, "end": 0.45, "qAmp": 20, "rAmp": 80 },
+        "t": { "present": true, "start": 0.48, "end": 0.70, "amplitude": 22 }
     }
 }
