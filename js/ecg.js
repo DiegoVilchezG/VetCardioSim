@@ -46,14 +46,14 @@ function drawGrid() {
     const small = 10;
     const big = 50;
 
-    ctx.fillStyle = "#ffffff";
+    ctx.fillStyle = "#0a1a0f";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     for (let i = 0; i <= canvas.width; i += small) {
         ctx.beginPath();
         ctx.moveTo(i, 0);
         ctx.lineTo(i, canvas.height);
-        ctx.strokeStyle = i % big === 0 ? "#cccccc" : "#eeeeee";
+        ctx.strokeStyle = i % big === 0 ? "#1f5c33" : "#123320";
         ctx.lineWidth = i % big === 0 ? 1 : 0.5;
         ctx.stroke();
     }
@@ -62,7 +62,7 @@ function drawGrid() {
         ctx.beginPath();
         ctx.moveTo(0, i);
         ctx.lineTo(canvas.width, i);
-        ctx.strokeStyle = i % big === 0 ? "#cccccc" : "#eeeeee";
+        ctx.strokeStyle = i % big === 0 ? "#1f5c33" : "#123320";
         ctx.lineWidth = i % big === 0 ? 1 : 0.5;
         ctx.stroke();
     }
@@ -175,7 +175,7 @@ function draw() {
     ctx.beginPath();
     ctx.moveTo(prevX, prevY);
     ctx.lineTo(x, y);
-    ctx.strokeStyle = "#ff0000";
+    ctx.strokeStyle = "#39ff6a";
     ctx.lineWidth = 2;
     ctx.stroke();
 
@@ -193,10 +193,10 @@ function draw() {
     }
     
     const fcDisplay = Math.round(60 / beatDuration);
-    ctx.fillStyle = "rgba(255,255,255,0.9)";
+    ctx.fillStyle = "rgba(10,26,15,0.9)";
     ctx.fillRect(canvas.width - 180, 4, 172, 40);
     ctx.font = "bold 24px monospace";
-    ctx.fillStyle = "#ff0000";
+    ctx.fillStyle = "#39ff6a";
     ctx.textAlign = "right";
     ctx.fillText(`FC: ${fcDisplay} lpm`, canvas.width - 12, 34);
 
