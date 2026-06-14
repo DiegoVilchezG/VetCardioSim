@@ -154,10 +154,10 @@ function draw() {
 
         const pCfg = beatConfig.p;
         const pStart = pCfg.start * atrialBeatDuration;
-        const pEnd = pGfc.end * atrialBeatDuration;
-        if (pGfc.present && atrialFase >= pStart && atrialFase <= pEnd){
-            const u = (atrailFase - pStart) / (pEnd-pStart);
-            yOffset += ((1-Math.cos(2*Math.PI*u))/2)*pGfc.amplitude;
+        const pEnd = pCfg.end * atrialBeatDuration;
+        if (pCfg.present && atrialFase >= pStart && atrialFase <= pEnd){
+            const u = (atrialFase - pStart) / (pEnd-pStart);
+            yOffset += ((1-Math.cos(2*Math.PI*u))/2)*pCfg.amplitude;
         }
         yOffset += qrsWave(fase) + tWave(fase);
         yOffset *= gainMult;
@@ -171,6 +171,8 @@ function draw() {
                     + Math.sin(time * 31)*1.5;
         }
     }
+
+    const y = centerY - yOffset;
 
     ctx.beginPath();
     ctx.moveTo(prevX, prevY);
