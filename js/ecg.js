@@ -18,7 +18,7 @@ let manualHeartRate = null;
 let atrialTime = 0; 
 
 const themes={
-    light: {
+    classic: {
         bg: "#ffffff",
         gridMajor: "#cccccc",
         gridMinor: "#eeeeee",
