@@ -24,3 +24,9 @@ const gainSelect = document.getElementById("gainSelect");
 gainSelect.addEventListener("change", (e) => {
     gainMult = parseFloat(e.target.value);
 });
+
+const themeSelect = document.getElementById("themeSelect");
+themeSelect.addEventListener("change", (e) => {
+    currentTheme = themes[e.target.value];
+    drawGrid();
+});

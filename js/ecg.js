@@ -17,6 +17,27 @@ let beatDuration = 1;
 let manualHeartRate = null;
 let atrialTime = 0; 
 
+const themes={
+    classic: {
+        bg = "ffffff",
+        gridMajor = "cccccc",
+        gridMinor = "eeeeee",
+        trace = "ff0000",
+        fcBg = "rgba(255,255,255,0.9)",
+        fcText = "ee0000"
+    },
+    dark: {
+        bg = "0a1a0f",
+        gridMajor = "1f5c33",
+        gridMinor = "123320",
+        trace = "39ff6a",
+        fcBg = "rgba(10,26,15,0.9)",
+        fcText = "39ff6a"
+    }
+}
+
+let currentTheme = themes.classic;
+
 function setRhythm(name){
     if (!rhythms[name]) return;
     currentRhythm = name;
@@ -46,14 +67,14 @@ function drawGrid() {
     const small = 10;
     const big = 50;
 
-    ctx.fillStyle = "#0a1a0f";
+    ctx.fillStyle = currentTheme.bg;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     for (let i = 0; i <= canvas.width; i += small) {
         ctx.beginPath();
         ctx.moveTo(i, 0);
         ctx.lineTo(i, canvas.height);
-        ctx.strokeStyle = i % big === 0 ? "#1f5c33" : "#123320";
+        ctx.strokeStyle = i % big === 0 ? currentTheme.gridMajor : currentTheme.gridMinor;
         ctx.lineWidth = i % big === 0 ? 1 : 0.5;
         ctx.stroke();
     }
@@ -62,7 +83,7 @@ function drawGrid() {
         ctx.beginPath();
         ctx.moveTo(0, i);
         ctx.lineTo(canvas.width, i);
-        ctx.strokeStyle = i % big === 0 ? "#1f5c33" : "#123320";
+        ctx.strokeStyle = i % big === 0 ? currentTheme.gridMajor : currentTheme.gridMinor;
         ctx.lineWidth = i % big === 0 ? 1 : 0.5;
         ctx.stroke();
     }
@@ -177,7 +198,7 @@ function draw() {
     ctx.beginPath();
     ctx.moveTo(prevX, prevY);
     ctx.lineTo(x, y);
-    ctx.strokeStyle = "#39ff6a";
+    ctx.strokeStyle = currentTheme.trace;
     ctx.lineWidth = 2;
     ctx.stroke();
 
@@ -195,10 +216,10 @@ function draw() {
     }
     
     const fcDisplay = Math.round(60 / beatDuration);
-    ctx.fillStyle = "rgba(10,26,15,0.9)";
+    ctx.fillStyle = currentTheme.fcBg;
     ctx.fillRect(canvas.width - 180, 4, 172, 40);
     ctx.font = "bold 24px monospace";
-    ctx.fillStyle = "#39ff6a";
+    ctx.fillStyle = currentTheme.fcText;
     ctx.textAlign = "right";
     ctx.fillText(`FC: ${fcDisplay} lpm`, canvas.width - 12, 34);
 
