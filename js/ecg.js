@@ -18,21 +18,21 @@ let manualHeartRate = null;
 let atrialTime = 0; 
 
 const themes={
-    classic: {
-        bg = "ffffff",
-        gridMajor = "cccccc",
-        gridMinor = "eeeeee",
-        trace = "ff0000",
-        fcBg = "rgba(255,255,255,0.9)",
-        fcText = "ee0000"
+    light: {
+        bg: "#ffffff",
+        gridMajor: "#cccccc",
+        gridMinor: "#eeeeee",
+        trace: "#ff0000",
+        fcBg: "rgba(255,255,255,0.9)",
+        fcText: "#ee0000"
     },
     dark: {
-        bg = "0a1a0f",
-        gridMajor = "1f5c33",
-        gridMinor = "123320",
-        trace = "39ff6a",
-        fcBg = "rgba(10,26,15,0.9)",
-        fcText = "39ff6a"
+        bg: "#0a1a0f",
+        gridMajor: "#1f5c33",
+        gridMinor: "#123320",
+        trace: "#39ff6a",
+        fcBg: "rgba(10,26,15,0.9)",
+        fcText: "#39ff6a"
     }
 }
 
